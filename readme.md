@@ -17,26 +17,19 @@ It is written in Kotlin and Uses the Ktor framework. In the future I might add H
 
 ## Getting Started
 
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/sahmad/webrtc-signaling-server.git
-    cd webrtc-signaling-server
-    ```
-
-2. **Build the Project:**
+1. **Build the Project:**
 
     ```bash
    ./gradlew build
     ```
 
-3. **Run the Project:**
+2. **Run the Project:**
 
     ```bash
    ./gradlew run
     ```
    
-4. **Access the Server at:**
+3. **Access the Server at:**
 
     - [ws://localhost:8080/](ws://localhost:8080/)
 
