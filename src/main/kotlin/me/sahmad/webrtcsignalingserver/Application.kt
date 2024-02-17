@@ -1,5 +1,6 @@
 package me.sahmad.webrtcsignalingserver
 
+import io.ktor.serialization.deserialize
 import io.ktor.serialization.kotlinx.KotlinxWebsocketSerializationConverter
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.install
@@ -8,14 +9,14 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.routing.routing
 import io.ktor.server.websocket.WebSockets
-import io.ktor.server.websocket.receiveDeserialized
+import io.ktor.server.websocket.converter
 import io.ktor.server.websocket.webSocket
 import io.ktor.websocket.Frame
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class SignalingMessage(val type: String, val data: Any)
+data class SignalingMessage(val type: String, val data: String)
 
 fun main() {
     embeddedServer(Netty, port = 8080) {
@@ -34,9 +35,13 @@ fun main() {
                 try {
                     // Handle incoming messages from clients
                     for (frame in incoming) {
+                        println(frame.frameType)
                         if (frame is Frame.Text) {
-                            val message = receiveDeserialized<SignalingMessage>()
-                            handleWebSocketMessage(sessionId, message)
+                            val message = converter?.deserialize<SignalingMessage>(frame)
+                            println(message)
+                            if (message != null) {
+                                handleWebSocketMessage(sessionId, message)
+                            }
                         }
                     }
                 } catch (e: Exception) {
