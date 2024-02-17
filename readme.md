@@ -1,6 +1,7 @@
 # WebRTC Signaling Server
 
 This project serves as a signaling server for WebRTC communication. It facilitates the exchange of Session Description Protocol (SDP) offers, answers, and Interactive Connectivity Establishment (ICE) candidates between WebRTC clients to establish peer-to-peer communication.
+It is written in Kotlin and Uses the Ktor framework. In the future I might add H2 database as well for storing some of the information.
 
 ## Features
 
