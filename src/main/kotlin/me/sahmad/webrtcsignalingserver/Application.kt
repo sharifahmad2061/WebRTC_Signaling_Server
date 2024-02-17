@@ -12,11 +12,8 @@ import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.converter
 import io.ktor.server.websocket.webSocket
 import io.ktor.websocket.Frame
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-
-@Serializable
-data class SignalingMessage(val type: String, val data: String)
+import me.sahmad.webrtcsignalingserver.model.SignalingMessage
 
 fun main() {
     embeddedServer(Netty, port = 8080) {
