@@ -25,7 +25,7 @@ fun main() {
         }
 
         routing {
-            webSocket("/ws") {
+            webSocket("/") {
                 val sessionId = call.parameters["sessionId"] ?: return@webSocket
                 println("WebSocket connection established for session: $sessionId")
 

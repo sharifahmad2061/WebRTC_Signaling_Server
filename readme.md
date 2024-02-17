@@ -38,7 +38,7 @@ It is written in Kotlin and Uses the Ktor framework. In the future I might add H
    
 4. **Access the Server at:**
 
-    - [ws://localhost:8080/ws](ws://localhost:8080/ws)
+    - [ws://localhost:8080/](ws://localhost:8080/)
 
 ## Usage
 - Connect WebRTC clients to the signaling server.
