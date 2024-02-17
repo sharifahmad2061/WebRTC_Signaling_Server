@@ -31,26 +31,29 @@ fun main() {
                 val sessionId = call.parameters["sessionId"] ?: return@webSocket
                 println("WebSocket connection established for session: $sessionId")
 
-                           try {
-                                // Handle incoming messages from clients
-                                for (frame in incoming) {
-                                    if (frame is Frame.Text) {
-                                        val message = receiveDeserialized<SignalingMessage>()
-                                        handleWebSocketMessage(sessionId, message)
-                                    }
-                                }
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                            } finally {
-                                // Cleanup when the WebSocket connection is closed
-                                println("WebSocket connection closed for session: $sessionId")
-                            }
+                try {
+                    // Handle incoming messages from clients
+                    for (frame in incoming) {
+                        if (frame is Frame.Text) {
+                            val message = receiveDeserialized<SignalingMessage>()
+                            handleWebSocketMessage(sessionId, message)
                         }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                } finally {
+                    // Cleanup when the WebSocket connection is closed
+                    println("WebSocket connection closed for session: $sessionId")
+                }
+            }
         }
     }.start(wait = true)
 }
 
-fun handleWebSocketMessage(sessionId: String, message: SignalingMessage) {
+fun handleWebSocketMessage(
+    sessionId: String,
+    message: SignalingMessage,
+) {
     println("Received message for session $sessionId: $message")
 
     // Your signaling server logic here...
